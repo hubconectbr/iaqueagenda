@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guimoo Advocacia 4.0 - CRM & Inteligência Artificial</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons (CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Estilos Personalizados -->
+    <style>
+        html, body { 
+            font-family: 'Inter', sans-serif; 
+        }
+        
+        @keyframes scroll { 
+            0% { transform: translateX(0); } 
+            100% { transform: translateX(-50%); } 
+        }
+        
+        .animate-marquee { 
+            display: flex; 
+            animation: scroll 20s linear infinite; 
+        }
+        
+        .whatsapp-bg {
+            background-color: #EFEAE2;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .chat-scroll::-webkit-scrollbar { width: 4px; }
+        .chat-scroll::-webkit-scrollbar-track { background: transparent; }
+        .chat-scroll::-webkit-scrollbar-thumb { background-color: rgba(0, 0, 0, 0.15); border-radius: 10px; }
+        
+        .iphone-notch {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 25px;
+            background-color: #0f172a;
+            border-bottom-left-radius: 16px;
+            border-bottom-right-radius: 16px;
+            z-index: 50;
+        }
+
+        .perspective-1000 { perspective: 1000px; }
+        .crm-tilt {
+            transform: rotateY(-5deg) rotateX(5deg);
+            transition: transform 0.5s ease;
+        }
+        .perspective-1000:hover .crm-tilt {
+            transform: rotateY(0deg) rotateX(0deg) scale(1.02);
+        }
+
+        @keyframes floatY {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .animate-float { animation: floatY 6s ease-in-out infinite; }
+        .animate-float-delayed { animation: floatY 6s ease-in-out infinite; animation-delay: 2s; }
+
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+
+        .toast-hidden {
+            transform: translateX(-150%);
+            opacity: 0;
+        }
+        .toast-visible {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 pt-16 overflow-x-hidden">
+
+    <!-- Header / Navbar Fixa -->
+    <header class="fixed top-0 w-full bg-white/80 backdrop-blur-md z-40 border-b border-slate-200 transition-all shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2 font-bold text-xl tracking-tight text-slate-900 cursor-pointer" onclick="showMainPage()">
+                <div class="w-8 h-8 bg-emerald-500 text-white rounded-lg flex items-center justify-center shadow-md">G</div>
+                Guimoo Advocacia 4.0
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="showMainPage()" class="text-sm font-semibold text-slate-600 hover:text-emerald-500 transition-colors">Início</button>
+                <button onclick="showAgentPage()" class="text-sm font-semibold bg-emerald-50 text-emerald-700 px-3.5 py-1.5 rounded-lg border border-emerald-200 hover:bg-emerald-100 transition-all flex items-center gap-1.5">
+                    <i data-lucide="bot" class="w-4 h-4"></i> Contratar Agente Avulso
+                </button>
+                <a href="#precos" class="hidden md:inline-block bg-slate-900 text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-emerald-500 transition-colors shadow-md">Planos Completos</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- CONTEÚDO PRINCIPAL (HOME) -->
+        <div id="page-home">
+            <!-- Hero Section -->
+            <section class="py-16 bg-white relative overflow-hidden">
+                <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiNlMmU4ZjAiLz48L3N2Zz4=')] opacity-50 pointer-events-none"></div>
+                
+                <div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center relative z-10">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold mb-6 tracking-wide">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> CRM + INTELIGÊNCIA ARTIFICIAL + MENTORIA
+                        </div>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight tracking-tight text-slate-900">
+                            Automatize o WhatsApp com uma <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-600 to-emerald-400">I.A. que fecha contratos.</span>
+                        </h1>
+                        <p class="text-slate-600 text-lg md:text-xl mb-8 leading-relaxed">
+                            Seu escritório atendendo 24 horas por dia, organizando leads, triando demandas jurídicas, preenchendo contratos e agendando reuniões no piloto automático.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="#precos" class="inline-flex justify-center items-center gap-2 bg-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-600/30">
+                                Ver Planos Completos <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full aspect-video rounded-2xl overflow-hidden shadow-2xl shadow-slate-900/20 bg-slate-900 relative border-4 border-white/50">
+                        <iframe class="absolute top-0 left-0 w-full h-full z-10" src="https://www.youtube.com/embed/PMhsU9zC0u8?si=Zp_Ea9TFp1Tgx5kM" title="Guimoo Advocacia 4.0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Marquee Ticker -->
+            <section class="py-10 bg-slate-50 border-y border-slate-200 overflow-hidden relative">
+                <div class="absolute left-0 top-0 w-24 h-full bg-gradient-to-r from-slate-50 to-transparent z-10"></div>
+                <div class="absolute right-0 top-0 w-24 h-full bg-gradient-to-l from-slate-50 to-transparent z-10"></div>
+                
+                <div class="max-w-[100vw] overflow-hidden">
+                    <div id="marquee-container" class="animate-marquee whitespace-nowrap">
+                        <!-- Gerado via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção: 15 minutos -->
+            <section class="py-20 bg-white">
+                <div class="max-w-6xl mx-auto px-4 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-900">A sua I.A. ativa em <span class="text-emerald-600">15 minutos</span></h2>
+                    <p class="text-slate-600 max-w-2xl mx-auto mb-16 text-lg">Um processo simples e guiado para colocar sua estrutura comercial em funcionamento.</p>
+                    
+                    <div class="grid md:grid-cols-3 gap-8 relative">
+                        <div class="hidden md:block absolute top-12 left-[20%] right-[20%] h-0.5 bg-slate-100 z-0"></div>
+                        
+                        <div class="p-8 bg-white rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/40 hover:border-emerald-500 transition duration-300 relative z-10 group">
+                            <div class="w-16 h-16 bg-emerald-500/10 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                                <i data-lucide="users" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-slate-900">1. Escolha o agente</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Mais de 80 modelos prontos, um para cada tese jurídica. Selecione o que mais combina com o seu escritório.</p>
+                        </div>
+                        
+                        <div class="p-8 bg-white rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/40 hover:border-emerald-500 transition duration-300 relative z-10 group">
+                            <div class="w-16 h-16 bg-emerald-500/10 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                                <i data-lucide="settings-2" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-slate-900">2. Personalize</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Adicione os dados do escritório e ajuste o roteiro de atendimento de acordo com a sua operação.</p>
+                        </div>
+                        
+                        <div class="p-8 bg-white rounded-3xl border border-slate-100 shadow-xl shadow-slate-200/40 hover:border-emerald-500 transition duration-300 relative z-10 group">
+                            <div class="w-16 h-16 bg-emerald-500/10 text-emerald-600 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                                <i data-lucide="smartphone" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="text-xl font-bold mb-3 text-slate-900">3. Conecte ao WhatsApp</h3>
+                            <p class="text-sm text-slate-600 leading-relaxed">Leia o QR Code com o seu telemóvel/celular e pronto: a sua I.A. já começa a atender 24h por dia.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SIMULADOR INTERATIVO -->
+            <section id="simulador" class="py-24 bg-slate-900 border-y border-slate-800 relative overflow-hidden">
+                <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[500px] h-[500px] bg-emerald-500/20 rounded-full blur-[120px] pointer-events-none"></div>
+                
+                <div class="max-w-6xl mx-auto px-4">
+                    <div class="text-center mb-16 relative z-10">
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-white">Simule uma conversa <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-200">real</span></h2>
+                        <p class="text-slate-300 mt-4 text-lg max-w-2xl mx-auto">Veja na prática como a nossa I.A. interage, qualifica e direciona o cliente do seu escritório.</p>
+                    </div>
+                    
+                    <div class="flex flex-col lg:flex-row gap-12 justify-center items-start max-w-5xl mx-auto relative z-10">
+                        <!-- Barra Lateral (Menu de Seleção) -->
+                        <div class="w-full lg:w-[380px] flex-shrink-0 flex flex-col gap-8 bg-slate-800/50 p-8 rounded-3xl border border-slate-700 backdrop-blur-sm">
+                            <!-- Passo 1 -->
+                            <div>
+                                <h3 class="font-bold text-white mb-2 flex items-center gap-2">
+                                    <span class="bg-emerald-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">1</span> Escolha a área
+                                </h3>
+                                <div class="space-y-3 mt-4">
+                                    <div id="btn-area-trabalhista" onclick="selectArea('trabalhista')" class="flex items-start p-4 rounded-xl relative cursor-pointer transition-all group border-2 border-emerald-500 bg-emerald-500/10 shadow-sm">
+                                        <div class="mt-1 mr-3">
+                                            <i data-lucide="briefcase" class="w-6 h-6 text-emerald-400"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-sm text-white">Direito Trabalhista</h4>
+                                            <p class="text-xs text-slate-400 mt-1">Questões com o empregador.</p>
+                                        </div>
+                                        <div id="check-trabalhista" class="absolute top-4 right-4">
+                                            <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 fill-emerald-500/20"></i>
+                                        </div>
+                                    </div>
+                                    
+                                    <div id="btn-area-previdenciario" onclick="selectArea('previdenciario')" class="flex items-start p-4 rounded-xl relative cursor-pointer transition-all group border border-slate-600 bg-slate-800/80 hover:border-emerald-500/50">
+                                        <div class="mt-1 mr-3">
+                                            <i data-lucide="calculator" class="w-6 h-6 text-slate-400 group-hover:text-slate-300"></i>
+                                        </div>
+                                        <div>
+                                            <h4 class="font-semibold text-sm text-slate-300 group-hover:text-white">Direito Previdenciário</h4>
+                                            <p class="text-xs text-slate-400 mt-1">Benefícios, INSS, BPC/LOAS.</p>
+                                        </div>
+                                        <div id="check-previdenciario" class="absolute top-4 right-4 hidden">
+                                            <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 fill-emerald-500/20"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Passo 2 -->
+                            <div>
+                                <h3 class="font-bold text-white mb-2 flex items-center gap-2">
+                                    <span class="bg-emerald-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs">2</span> Escolha a causa
+                                </h3>
+                                
+                                <div id="causas-trabalhista" class="space-y-3 mt-4">
+                                    <div class="p-4 border-2 border-emerald-500 bg-emerald-500/10 rounded-xl relative cursor-default shadow-sm flex items-center justify-between">
+                                        <div>
+                                            <h4 class="font-semibold text-white text-sm">Salário-Maternidade</h4>
+                                            <p class="text-xs text-slate-400 mt-1">Durante a gestação ou adoção.</p>
+                                        </div>
+                                        <div>
+                                            <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 fill-emerald-500/20"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="causas-previdenciario" class="space-y-3 mt-4 hidden">
+                                    <div class="p-4 border-2 border-emerald-500 bg-emerald-500/10 rounded-xl relative cursor-default shadow-sm flex items-center justify-between">
+                                        <div>
+                                            <h4 class="font-semibold text-white text-sm">BPC / LOAS</h4>
+                                            <p class="text-xs text-slate-400 mt-1">Benefício Assistencial (Idoso/PCD).</p>
+                                        </div>
+                                        <div>
+                                            <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-400 fill-emerald-500/20"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Passo 3 -->
+                            <div>
+                                <button id="btn-start" onclick="startSimulation()" class="w-full py-4 px-4 rounded-xl flex items-center justify-center font-bold text-white bg-emerald-500 hover:bg-emerald-400 hover:-translate-y-1 transition-all shadow-xl shadow-emerald-500/20">
+                                    <span id="btn-start-content" class="flex items-center">
+                                        <i data-lucide="play" class="w-5 h-5 mr-2 fill-white"></i>
+                                        <span>Iniciar Simulação</span>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Interface do Chat (Formato iPhone) -->
+                        <div class="w-full max-w-[320px] flex-shrink-0 whatsapp-bg rounded-[3rem] shadow-2xl overflow-hidden flex flex-col relative border-[12px] border-slate-950 h-[650px] mx-auto lg:mx-0 ring-4 ring-slate-800/50 bg-[#EFEAE2]">
+                            
+                            <div class="iphone-notch"></div>
+                            
+                            <!-- Cabeçalho do Chat -->
+                            <div class="bg-[#075E54] text-white px-4 py-3 pt-10 flex items-center justify-between z-10 shadow-sm relative">
+                                <div class="flex items-center space-x-3">
+                                    <div class="relative">
+                                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-[#075E54] border border-white/20 shadow-sm">
+                                            <i data-lucide="bot" class="w-6 h-6"></i>
+                                        </div>
+                                        <div class="absolute bottom-0 right-0 w-3 h-3 bg-green-400 rounded-full border-2 border-[#075E54]"></div>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold flex items-center text-[15px]">
+                                            I.A. Guimoo
+                                            <span class="ml-1 text-green-300"><i data-lucide="badge-check" class="w-4 h-4"></i></span>
+                                        </h4>
+                                        <p class="text-[11px] text-green-100/90 leading-none mt-0.5">online</p>
+                                    </div>
+                                </div>
+                                <div class="flex gap-3">
+                                    <i data-lucide="video" class="w-5 h-5 opacity-80"></i>
+                                    <i data-lucide="phone" class="w-5 h-5 opacity-80"></i>
+                                </div>
+                            </div>
+
+                            <!-- Área de Mensagens -->
+                            <div id="chat-container" class="flex-1 overflow-y-auto p-3 z-10 scroll-smooth chat-scroll relative pb-6">
+                                <div id="msg-lock" class="flex justify-center my-10 transition-opacity">
+                                    <div class="bg-yellow-100/90 text-yellow-800 text-[11px] py-2 px-4 rounded-lg shadow-sm border border-yellow-200/50 text-center max-w-[85%] font-medium">
+                                        <i data-lucide="lock" class="w-3 h-3 inline-block mr-1 -mt-0.5 opacity-70"></i>
+                                        Clique em <strong>"Iniciar Simulação"</strong> ao lado para ver a IA a trabalhar.
+                                    </div>
+                                </div>
+
+                                <div id="messages-wrapper" class="space-y-3">
+                                    <!-- Mensagens inseridas via JS -->
+                                </div>
+
+                                <div id="typing-indicator" class="flex justify-start mt-4 mb-2 hidden">
+                                    <div class="bg-white rounded-2xl rounded-tl-none px-4 py-2 shadow-sm flex items-center space-x-2 w-fit">
+                                        <span class="text-[11px] text-slate-500 font-medium">A digitar</span>
+                                        <div class="flex space-x-1 ml-1">
+                                            <div class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0ms"></div>
+                                            <div class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 150ms"></div>
+                                            <div class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 300ms"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="cta-final" class="flex justify-center mt-6 mb-4 w-full hidden">
+                                    <a href="#precos" class="bg-emerald-500 hover:bg-emerald-400 text-white font-bold py-2.5 px-4 rounded-full shadow-lg transition-transform hover:scale-105 text-xs flex items-center gap-2">
+                                        <span>Ver Planos</span>
+                                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- Input Area (Apenas Visual) -->
+                            <div class="bg-[#F0F2F5] px-2 py-3 flex items-center gap-2 z-10 border-t border-slate-200/60 pb-6 relative">
+                                <i data-lucide="plus" class="w-6 h-6 text-slate-500 ml-1"></i>
+                                <div class="flex-1 bg-white rounded-full px-4 py-2 shadow-sm border border-slate-200 flex items-center">
+                                    <p class="text-slate-400 text-[13px] truncate">Mensagem</p>
+                                </div>
+                                <div class="w-9 h-9 rounded-full bg-[#00A884] flex items-center justify-center shadow-md mr-1 shrink-0">
+                                    <i data-lucide="mic" class="w-4 h-4 text-white"></i>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO: DA RECEPÇÃO AO FECHAMENTO DE CONTRATOS (EXATAMENTE COMO NA IMAGEM) -->
+            <section class="py-24 bg-[#0B132B] text-white relative overflow-hidden">
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+                
+                <div class="max-w-6xl mx-auto px-4 relative z-10 text-center">
+                    <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+                        Da recepção ao <span class="text-emerald-400">fechamento de contratos.</span>
+                    </h2>
+                    <p class="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto mb-16">
+                        Entenda como a I.A. atua em cada etapa da jornada do seu cliente.
+                    </p>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
+                        <!-- Card 1 -->
+                        <div class="bg-[#111C3A] border border-[#1E294B] rounded-2xl p-8 hover:border-emerald-500/50 transition-all duration-300 flex flex-col justify-between group shadow-xl">
+                            <div>
+                                <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 mb-6 border border-emerald-500/20 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="message-square" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3">Recepção 24/7</h3>
+                                <p class="text-sm text-slate-300 leading-relaxed">
+                                    Atendimento instantâneo no WhatsApp em qualquer horário do dia ou da noite. Nenhum lead fica esperando.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="bg-[#111C3A] border border-[#1E294B] rounded-2xl p-8 hover:border-emerald-500/50 transition-all duration-300 flex flex-col justify-between group shadow-xl">
+                            <div>
+                                <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 mb-6 border border-emerald-500/20 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="search" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3">Análise do caso</h3>
+                                <p class="text-sm text-slate-300 leading-relaxed">
+                                    A I.A. faz a triagem inicial da demanda, identifica viabilidade jurídica e direciona o lead para a tese certa.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="bg-[#111C3A] border border-[#1E294B] rounded-2xl p-8 hover:border-emerald-500/50 transition-all duration-300 flex flex-col justify-between group shadow-xl">
+                            <div>
+                                <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 mb-6 border border-emerald-500/20 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="file-text" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3">Oferta e contrato</h3>
+                                <p class="text-sm text-slate-300 leading-relaxed">
+                                    Apresenta os serviços do escritório, quebra objeções comuns e dispara a proposta/contrato automaticamente.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="bg-[#111C3A] border border-[#1E294B] rounded-2xl p-8 hover:border-emerald-500/50 transition-all duration-300 flex flex-col justify-between group shadow-xl">
+                            <div>
+                                <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 mb-6 border border-emerald-500/20 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="folder-open" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3">Coleta de documentos</h3>
+                                <p class="text-sm text-slate-300 leading-relaxed">
+                                    Solicita, recebe e organiza todos os documentos necessários do cliente para o andamento do processo.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Card 5 -->
+                        <div class="bg-[#111C3A] border border-[#1E294B] rounded-2xl p-8 hover:border-emerald-500/50 transition-all duration-300 flex flex-col justify-between group shadow-xl">
+                            <div>
+                                <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 mb-6 border border-emerald-500/20 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="calendar" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3">Agendamento</h3>
+                                <p class="text-sm text-slate-300 leading-relaxed">
+                                    Caso haja necessidade de atendimento humano, marca a reunião direto na sua agenda com horários disponíveis.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Card 6 -->
+                        <div class="bg-[#111C3A] border border-[#1E294B] rounded-2xl p-8 hover:border-emerald-500/50 transition-all duration-300 flex flex-col justify-between group shadow-xl">
+                            <div>
+                                <div class="w-12 h-12 bg-emerald-500/10 rounded-xl flex items-center justify-center text-emerald-400 mb-6 border border-emerald-500/20 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="activity" class="w-6 h-6"></i>
+                                </div>
+                                <h3 class="text-xl font-bold text-white mb-3">Acompanhamento ao vivo</h3>
+                                <p class="text-sm text-slate-300 leading-relaxed">
+                                    Veja todas as conversas em tempo real no painel e assuma o atendimento manualmente sempre que julgar necessário.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO DO CRM -->
+            <section class="py-24 bg-slate-950 overflow-hidden relative">
+                <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiMzMzQxNTUiLz48L3N2Zz4=')] opacity-20"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] md:w-[1000px] h-[600px] bg-emerald-500/20 rounded-full blur-[120px] pointer-events-none"></div>
+                <div class="max-w-7xl mx-auto px-4 relative z-10 flex flex-col lg:flex-row items-center gap-16">
+                    
+                    <div class="w-full lg:w-5/12 text-center lg:text-left">
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/80 text-emerald-400 text-sm font-semibold mb-6 border border-slate-700/50 backdrop-blur-sm shadow-sm">
+                            <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Muito além de um robô
+                        </div>
+                        <h2 class="text-3xl md:text-5xl font-extrabold mb-6 leading-tight text-white">
+                            O seu escritório <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-500 to-emerald-300">sob controle total.</span>
+                        </h2>
+                        <p class="text-slate-300 text-lg mb-8 leading-relaxed">
+                            Acompanhe cada atendimento ao vivo, controle o funil de vendas, analise métricas de conversão e faça a gestão dos seus clientes num painel de nível empresarial.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex gap-4 items-start text-left">
+                                <div class="w-10 h-10 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-center shrink-0 mt-1">
+                                    <i data-lucide="bar-chart-2" class="w-5 h-5 text-emerald-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold text-lg mb-1">Métricas que importam</h4>
+                                    <p class="text-sm text-slate-400">Veja de onde vêm os leads e o seu Custo de Aquisição (CAC) real.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4 items-start text-left">
+                                <div class="w-10 h-10 rounded-xl bg-slate-800/80 border border-slate-700 flex items-center justify-center shrink-0 mt-1">
+                                    <i data-lucide="filter" class="w-5 h-5 text-emerald-400"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold text-lg mb-1">Funil de 13 Etapas</h4>
+                                    <p class="text-sm text-slate-400">Da "Recepção" à "Procuração Assinada", a IA move o cliente sozinha.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full lg:w-7/12 relative perspective-1000">
+                        <div class="relative w-full aspect-[4/3] crm-tilt z-10 group">
+                            <div class="absolute -inset-4 bg-emerald-500/20 rounded-2xl blur-2xl group-hover:bg-emerald-500/30 transition-colors"></div>
+                            
+                            <div class="relative w-full h-full rounded-2xl overflow-hidden border border-slate-700/50 shadow-2xl bg-white flex flex-col">
+                                <div class="h-8 bg-slate-100 border-b border-slate-200 flex items-center px-3 gap-2 shrink-0">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-slate-300"></div>
+                                    <div class="w-2.5 h-2.5 rounded-full bg-slate-300"></div>
+                                    <div class="w-2.5 h-2.5 rounded-full bg-slate-300"></div>
+                                    <div class="mx-auto text-[10px] text-slate-500 font-medium bg-white px-4 py-0.5 rounded shadow-sm">app.guimoo.com.br</div>
+                                </div>
+                                <img src="https://placehold.co/800x600/0f172a/ffffff?text=Guimoo+CRM+Dashboard" alt="Painel CRM Guimoo" class="w-full h-full object-cover object-top" onerror="this.src='https://placehold.co/800x600/0f172a/ffffff?text=Guimoo+CRM'" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SEÇÃO DE COMPARAÇÃO DETALHADA ENTRE PLANOS -->
+            <section id="comparativo" class="py-24 bg-white border-b border-slate-200">
+                <div class="max-w-6xl mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <span class="text-emerald-600 font-bold text-sm tracking-widest uppercase bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">Análise Completa</span>
+                        <h2 class="text-3xl md:text-4xl font-extrabold mt-3 mb-4 text-slate-900">Comparativo Detalhado dos Planos</h2>
+                        <p class="text-slate-600 text-lg max-w-2xl mx-auto">Compare cada recurso, período, nível de agentes e suporte estratégico disponível na Guimoo Advocacia 4.0.</p>
+                    </div>
+
+                    <div class="overflow-x-auto shadow-xl rounded-3xl border border-slate-200">
+                        <table class="w-full text-left border-collapse bg-white">
+                            <thead>
+                                <tr class="bg-slate-900 text-white text-sm md:text-base">
+                                    <th class="p-5 font-bold w-1/3">Recursos & Inclusões</th>
+                                    <th class="p-5 text-center font-bold">START<br><span class="text-xs font-normal text-slate-300">R$ 997 / 30 dias</span></th>
+                                    <th class="p-5 text-center font-bold">PRO<br><span class="text-xs font-normal text-slate-300">R$ 2.397 / 3 meses</span></th>
+                                    <th class="p-5 text-center font-bold bg-emerald-600">GROWTH ⭐<br><span class="text-xs font-normal text-emerald-100">R$ 3.997 / 6 meses</span></th>
+                                    <th class="p-5 text-center font-bold">SCALE<br><span class="text-xs font-normal text-slate-300">R$ 6.997 / 12 meses</span></th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 text-sm">
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-4 font-semibold text-slate-800">Período de Contrato</td>
+                                    <td class="p-4 text-center font-medium">30 Dias</td>
+                                    <td class="p-4 text-center font-medium">3 Meses</td>
+                                    <td class="p-4 text-center font-medium bg-emerald-50/50 text-emerald-900 font-bold">6 Meses</td>
+                                    <td class="p-4 text-center font-medium">12 Meses</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-4 font-semibold text-slate-800">Equivalência Mensal</td>
+                                    <td class="p-4 text-center text-slate-500">R$ 997</td>
+                                    <td class="p-4 text-center text-slate-500">R$ 799 / mês</td>
+                                    <td class="p-4 text-center bg-emerald-50/50 text-emerald-800 font-semibold">aprox. R$ 666 / mês</td>
+                                    <td class="p-4 text-center text-slate-500">aprox. R$ 583 / mês</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-4 font-semibold text-slate-800">Agentes Jurídicos Incluídos</td>
+                                    <td class="p-4 text-center font-bold text-emerald-600">1 Agente</td>
+                                    <td class="p-4 text-center font-bold text-emerald-600">Até 3 Agentes</td>
+                                    <td class="p-4 text-center font-bold bg-emerald-50/50 text-emerald-700">Até 6 Agentes</td>
+                                    <td class="p-4 text-center font-bold text-purple-600">Até 10 Agentes</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-4 font-semibold text-slate-800">Nível de Mentoria</td>
+                                    <td class="p-4 text-center">Implantação</td>
+                                    <td class="p-4 text-center">Acompanhamento</td>
+                                    <td class="p-4 text-center bg-emerald-50/50 font-semibold text-emerald-900">Mensal</td>
+                                    <td class="p-4 text-center">Estratégica</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-4 font-semibold text-slate-800">Plataforma Guimoo (CRM + Funil)</td>
+                                    <td class="p-4 text-center text-emerald-600 font-bold">✅</td>
+                                    <td class="p-4 text-center text-emerald-600 font-bold">✅</td>
+                                    <td class="p-4 text-center bg-emerald-50/50 text-emerald-600 font-bold">✅</td>
+                                    <td class="p-4 text-center text-emerald-600 font-bold">✅</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-4 font-semibold text-slate-800">Recepção Automatizada 24h</td>
+                                    <td class="p-4 text-center text-emerald-600 font-bold">✅</td>
+                                    <td class="p-4 text-center text-emerald-600 font-bold">✅</td>
+                                    <td class="p-4 text-center bg-emerald-50/50 text-emerald-600 font-bold">✅</td>
+                                    <td class="p-4 text-center text-emerald-600 font-bold">✅</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-4 font-semibold text-slate-800">Integração com Agenda Google</td>
+                                    <td class="p-4 text-center text-emerald-600 font-bold">✅</td>
+                                    <td class="p-4 text-center text-emerald-600 font-bold">✅</td>
+                                    <td class="p-4 text-center bg-emerald-50/50 text-emerald-600 font-bold">✅</td>
+                                    <td class="p-4 text-center text-emerald-600 font-bold">✅</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-4 font-semibold text-slate-800">Hub de Processos e Pós-Venda</td>
+                                    <td class="p-4 text-center text-emerald-600 font-bold">✅</td>
+                                    <td class="p-4 text-center text-emerald-600 font-bold">✅</td>
+                                    <td class="p-4 text-center bg-emerald-50/50 text-emerald-600 font-bold">✅</td>
+                                    <td class="p-4 text-center text-emerald-600 font-bold">✅</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-4 font-semibold text-slate-800">Análise de Funil e Gargalos</td>
+                                    <td class="p-4 text-center text-slate-400">Inicial</td>
+                                    <td class="p-4 text-center text-emerald-600 font-bold">✅</td>
+                                    <td class="p-4 text-center bg-emerald-50/50 text-emerald-600 font-bold">Avançada</td>
+                                    <td class="p-4 text-center text-emerald-600 font-bold">Contínua / Indicadores</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <td class="p-4 font-semibold text-slate-800">Evolução de Prompts e Scripts</td>
+                                    <td class="p-4 text-center text-slate-400">Básica</td>
+                                    <td class="p-4 text-center text-emerald-600 font-bold">✅</td>
+                                    <td class="p-4 text-center bg-emerald-50/50 text-emerald-600 font-bold">✅</td>
+                                    <td class="p-4 text-center text-purple-600 font-bold">Personalizada / Contínua</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PREÇOS E PLANOS (GUIMOO ADVOCACIA 4.0) -->
+            <section id="precos" class="py-24 bg-slate-50">
+                <div class="max-w-7xl mx-auto px-4">
+                    <div class="text-center mb-16">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-900">Guimoo Advocacia 4.0: <span class="text-emerald-600">Sua operação pronta.</span></h2>
+                        <p class="text-slate-600 text-lg">CRM, Inteligência Artificial e Metodologia Comercial. Escolha o plano ideal para o seu momento.</p>
+                        
+                        <!-- Banner de contratação avulsa -->
+                        <div class="mt-8 inline-flex items-center gap-3 bg-emerald-50 border border-emerald-200 px-6 py-3.5 rounded-2xl shadow-sm">
+                            <i data-lucide="sparkles" class="w-5 h-5 text-emerald-600"></i>
+                            <span class="text-sm font-medium text-emerald-900">Precisa de apenas 1 ou 2 agentes específicos?</span>
+                            <button onclick="showAgentPage()" class="ml-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition-all">Contratar Agente Avulso</button>
+                        </div>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 items-center">
+                        <!-- START -->
+                        <div class="bg-white border border-slate-200 rounded-2xl p-8 hover:border-slate-300 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+                            <div class="inline-block px-3 py-1 rounded-full bg-slate-100 text-slate-600 text-xs font-bold mb-4 w-fit">30 DIAS</div>
+                            <h3 class="text-2xl font-bold mb-2 text-slate-900">START</h3>
+                            <div class="mb-6">
+                                <span class="text-sm font-semibold text-slate-500">R$</span>
+                                <span class="text-4xl font-extrabold text-slate-900">997</span>
+                                <span class="text-slate-500 text-sm block mt-1">investimento único</span>
+                            </div>
+                            <p class="text-sm text-slate-500 mb-6">Ideal para validar a utilização de I.A. no seu escritório.</p>
+                            <ul class="text-sm text-slate-600 mb-8 flex-1 space-y-4">
+                                <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-emerald-600 shrink-0"></i> 1 Agente Jurídico</li>
+                                <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-emerald-600 shrink-0"></i> CRM e Funil configurados</li>
+                                <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-emerald-600 shrink-0"></i> Recepção automatizada 24h</li>
+                                <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-emerald-600 shrink-0"></i> Mentoria: Implantação</li>
+                            </ul>
+                            <a href="https://www.asaas.com/c/zrru9p7blzwyve9c" target="_blank" class="block w-full bg-slate-100 text-slate-800 text-center py-3.5 rounded-xl font-bold hover:bg-slate-200 transition-colors mt-auto">Assinar START</a>
+                        </div>
+                        
+                        <!-- PRO -->
+                        <div class="bg-white border border-slate-200 rounded-2xl p-8 hover:border-slate-300 hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+                            <div class="inline-block px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-xs font-bold mb-4 w-fit">3 MESES</div>
+                            <h3 class="text-2xl font-bold mb-2 text-slate-900">PRO</h3>
+                            <div class="mb-6">
+                                <span class="text-sm font-semibold text-slate-500">R$</span>
+                                <span class="text-4xl font-extrabold text-slate-900">2.397</span>
+                                <span class="text-slate-500 text-sm block mt-1">equiv. a R$ 799 / mês</span>
+                            </div>
+                            <p class="text-sm text-slate-500 mb-6">Para quem possui até três áreas principais de atuação.</p>
+                            <ul class="text-sm text-slate-600 mb-8 flex-1 space-y-4">
+                                <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-emerald-600 shrink-0"></i> Até 3 Agentes Jurídicos</li>
+                                <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-emerald-600 shrink-0"></i> CRM, Funil e Etiquetas</li>
+                                <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-emerald-600 shrink-0"></i> Recepção automatizada 24h</li>
+                                <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-emerald-600 shrink-0"></i> Mentoria: Acompanhamento</li>
+                            </ul>
+                            <a href="https://www.asaas.com/c/jm96lqm63xruavdt" target="_blank" class="block w-full bg-slate-100 text-slate-800 text-center py-3.5 rounded-xl font-bold hover:bg-slate-200 transition-colors mt-auto">Assinar PRO</a>
+                        </div>
+                        
+                        <!-- GROWTH -->
+                        <div class="bg-slate-900 border-2 border-emerald-500 rounded-2xl p-8 shadow-2xl shadow-emerald-500/20 transform lg:-translate-y-4 relative flex flex-col text-white z-10 h-full">
+                            <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-emerald-500 to-emerald-400 text-white px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase shadow-lg whitespace-nowrap flex items-center gap-1">
+                                <i data-lucide="star" class="w-3 h-3 fill-white"></i> Mais Recomendado
+                            </div>
+                            <div class="inline-block px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 text-xs font-bold mb-4 w-fit mt-2">6 MESES</div>
+                            <h3 class="text-2xl font-bold mb-2">GROWTH</h3>
+                            <div class="mb-6">
+                                <span class="text-sm font-semibold text-emerald-400">R$</span>
+                                <span class="text-4xl font-extrabold">3.997</span>
+                                <span class="text-slate-400 text-sm block mt-1">equiv. a R$ 666 / mês</span>
+                            </div>
+                            <p class="text-sm text-slate-300 mb-6">Estruture diferentes áreas e acompanhe a evolução da operação.</p>
+                            <ul class="text-sm text-slate-300 mb-8 flex-1 space-y-4">
+                                <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-emerald-400 shrink-0"></i> Até 6 Agentes Jurídicos</li>
+                                <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-emerald-400 shrink-0"></i> CRM Completo + Automações</li>
+                                <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-emerald-400 shrink-0"></i> Laboratório de Conversão</li>
+                                <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-emerald-400 shrink-0"></i> Mentoria: Mensal</li>
+                            </ul>
+                            <a href="https://www.asaas.com/c/3d5pjdzkhz5ao633" target="_blank" class="block w-full bg-emerald-600 text-white text-center py-4 rounded-xl font-bold hover:bg-emerald-500 transition-colors shadow-lg shadow-emerald-600/25 mt-auto">Assinar GROWTH</a>
+                        </div>
+                        
+                        <!-- SCALE -->
+                        <div class="bg-white border border-slate-200 rounded-2xl p-8 hover:border-emerald-500 hover:shadow-xl transition-all duration-300 flex flex-col h-full relative overflow-hidden">
+                            <div class="absolute top-0 right-0 w-24 h-24 bg-purple-500/10 rounded-bl-full -z-10"></div>
+                            <div class="inline-block px-3 py-1 rounded-full bg-purple-50 text-purple-600 text-xs font-bold mb-4 w-fit">12 MESES</div>
+                            <h3 class="text-2xl font-bold mb-2 text-slate-900">SCALE</h3>
+                            <div class="mb-6">
+                                <span class="text-sm font-semibold text-slate-500">R$</span>
+                                <span class="text-4xl font-extrabold text-slate-900">6.997</span>
+                                <span class="text-slate-500 text-sm block mt-1">equiv. a R$ 583 / mês</span>
+                            </div>
+                            <p class="text-sm text-slate-500 mb-6">Transforme sua operação. Múltiplas teses e roteamento inteligente.</p>
+                            <ul class="text-sm text-slate-600 mb-8 flex-1 space-y-4">
+                                <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-emerald-600 shrink-0"></i> Até 10 Agentes Jurídicos</li>
+                                <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-emerald-600 shrink-0"></i> Roteamento entre agentes</li>
+                                <li class="flex gap-3"><i data-lucide="check" class="w-5 h-5 text-emerald-600 shrink-0"></i> Mentoria: Estratégica</li>
+                            </ul>
+                            <a href="https://www.asaas.com/c/46rkoxjhb8d78lgv" target="_blank" class="block w-full bg-slate-900 text-white text-center py-3.5 rounded-xl font-bold hover:bg-slate-800 transition-colors mt-auto">Assinar SCALE</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- PÁGINA DE CONTRATAÇÃO DE AGENTES AVULSOS -->
+        <div id="page-agents" class="hidden py-16 bg-slate-100 min-h-[85vh]">
+            <div class="max-w-4xl mx-auto px-4">
+                <div class="mb-8">
+                    <button onclick="showMainPage()" class="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-emerald-600 transition-colors bg-white px-4 py-2 rounded-xl border border-slate-200 shadow-sm">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i> Voltar para a Página Principal
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-3xl border border-slate-200 shadow-xl overflow-hidden p-8 md:p-12">
+                    <div class="text-center max-w-2xl mx-auto mb-10">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold mb-4">
+                            <i data-lucide="bot" class="w-3.5 h-3.5"></i> CONTRATAÇÃO PERSONALIZADA
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-3">Monte Seus Agentes Jurídicos Avulsos</h2>
+                        <p class="text-slate-600 text-base">Selecione a quantidade de agentes desejada (R$ 697 base). Pagamentos via <strong>PIX</strong> ganham automaticamente <span class="text-emerald-600 font-bold">10% de desconto</span> progressivo!</p>
+                    </div>
+
+                    <!-- Configuração de Quantidade -->
+                    <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 mb-8">
+                        <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                            <div>
+                                <h3 class="text-lg font-bold text-slate-900">Quantidade de Agentes</h3>
+                                <p class="text-xs text-slate-500 mt-0.5">Quanto mais agentes, menor o investimento individual na tabela progressiva.</p>
+                            </div>
+                            <div class="flex items-center gap-4 bg-white border border-slate-300 rounded-xl px-4 py-2 shadow-sm">
+                                <button onclick="adjustAgentCount(-1)" class="w-8 h-8 rounded-lg bg-slate-100 text-slate-700 font-bold flex items-center justify-center hover:bg-slate-200 transition-colors">-</button>
+                                <span id="agent-count-display" class="font-extrabold text-xl w-8 text-center text-slate-900">1</span>
+                                <button onclick="adjustAgentCount(1)" class="w-8 h-8 rounded-lg bg-emerald-500 text-white font-bold flex items-center justify-center hover:bg-emerald-600 transition-colors">+</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Contêiner Dinâmico para Configuração de Cada Agente -->
+                    <div id="agents-config-container" class="space-y-6 mb-8">
+                        <!-- Gerado via JS -->
+                    </div>
+
+                    <!-- Resumo de Investimento e Pagamento -->
+                    <div class="bg-slate-900 text-white rounded-2xl p-8 shadow-xl flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-emerald-400 font-bold">Resumo do Pedido</span>
+                            <div class="flex items-baseline gap-3 mt-2">
+                                <span id="total-price-display" class="text-4xl font-extrabold">R$ 627</span>
+                                <span id="original-price-display" class="text-slate-400 text-sm line-through">R$ 697</span>
+                            </div>
+                            <p id="discount-badge-text" class="text-xs text-emerald-300 mt-1 font-medium">✨ Inclui 10% de desconto PIX (R$ 70 de economia)</p>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                            <button onclick="checkoutAgentOrder('pix')" class="flex-1 md:flex-none bg-emerald-500 hover:bg-emerald-400 text-white font-bold px-6 py-4 rounded-xl transition-all shadow-lg shadow-emerald-500/20 flex items-center justify-center gap-2 text-sm">
+                                <i data-lucide="zap" class="w-4 h-4 fill-white"></i> Pagar via PIX (-10%)
+                            </button>
+                            <button onclick="checkoutAgentOrder('card')" class="flex-1 md:flex-none bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold px-6 py-4 rounded-xl transition-all border border-slate-700 text-sm">
+                                Cartão de Crédito
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ AMPLIADO -->
+        <section class="py-24 bg-white">
+            <div class="max-w-3xl mx-auto px-4">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-slate-900">Dúvidas Frequentes</h2>
+                <div class="space-y-4">
+                    <details class="group bg-slate-50 border border-slate-200 rounded-2xl open:bg-white open:ring-1 open:ring-emerald-500/20 open:shadow-lg transition-all duration-300">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-slate-900 select-none">
+                            Quanto tempo leva para a plataforma Guimoo ser ativada no meu escritório?
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 group-open:text-emerald-500 transition-transform"></i>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                            O processo de implantação inicial leva em média 15 a 30 minutos. Após a configuração do CRM, funil e escolha dos agentes, você conecta o seu WhatsApp lendo um QR Code e a recepção automatizada já começa a funcionar imediatamente.
+                        </div>
+                    </details>
+                    
+                    <details class="group bg-slate-50 border border-slate-200 rounded-2xl open:bg-white open:ring-1 open:ring-emerald-500/20 open:shadow-lg transition-all duration-300">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-slate-900 select-none">
+                            A Guimoo substitui a minha agência de tráfego pago atual?
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 group-open:text-emerald-500 transition-transform"></i>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                            Não obrigatoriamente. A Guimoo trabalha em conjunto com a estrutura de marketing que você já possui. A sua agência gera o lead e a Guimoo recebe, responde em segundos, qualifica, organiza e acompanha a oportunidade no CRM.
+                        </div>
+                    </details>
+
+                    <details class="group bg-slate-50 border border-slate-200 rounded-2xl open:bg-white open:ring-1 open:ring-emerald-500/20 open:shadow-lg transition-all duration-300">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-slate-900 select-none">
+                            Existe limite de conversas ou cobrança por lead?
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 group-open:text-emerald-500 transition-transform"></i>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                            Não! Todas as conversas são totalmente ilimitadas. Não cobramos por lead gerado, por mensagem enviada e nem por tokens extras. O seu investimento é fixo durante o período do plano contratado.
+                        </div>
+                    </details>
+
+                    <details class="group bg-slate-50 border border-slate-200 rounded-2xl open:bg-white open:ring-1 open:ring-emerald-500/20 open:shadow-lg transition-all duration-300">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-slate-900 select-none">
+                            Posso migrar de agentes avulsos para um plano completo depois?
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 group-open:text-emerald-500 transition-transform"></i>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                            Sim! Caso o escritório comece contratando agentes avulsos e depois queira expandir para a plataforma completa com CRM, funil de 13 etapas e mentoria, podemos aproveitar a estrutura já montada.
+                        </div>
+                    </details>
+                    
+                    <details class="group bg-slate-50 border border-slate-200 rounded-2xl open:bg-white open:ring-1 open:ring-emerald-500/20 open:shadow-lg transition-all duration-300">
+                        <summary class="flex items-center justify-between p-6 cursor-pointer font-bold text-slate-900 select-none">
+                            Como funciona o desconto via PIX na contratação de agentes?
+                            <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 group-open:rotate-180 group-open:text-emerald-500 transition-transform"></i>
+                        </summary>
+                        <div class="px-6 pb-6 text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                            Para pagamentos à vista via PIX na contratação avulsa, aplicamos automaticamente 10% de desconto sobre o valor total da tabela progressiva de agentes.
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-12 bg-slate-950 text-slate-400 text-center border-t border-slate-800">
+            <div class="max-w-6xl mx-auto px-4">
+                <div class="flex justify-center items-center gap-2 mb-8 text-xl font-bold text-white cursor-pointer" onclick="showMainPage()">
+                    <div class="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">G</div>
+                    Guimoo Advocacia 4.0
+                </div>
+                <div class="text-xs flex flex-col items-center gap-1">
+                    <p>&copy; 2026 Guimoo. Todos os direitos reservados.</p>
+                    <p>GUIMOO SOLUÇÕES DIGITAIS - CNPJ: 63.970.695/0001-54</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Toast -->
+        <div id="toast-notification" class="toast-hidden fixed bottom-6 left-6 z-50 transform flex items-center gap-3 bg-white border border-slate-200 p-3.5 rounded-2xl shadow-2xl shadow-slate-900/10 max-w-[320px] pointer-events-none transition-all duration-500">
+            <div class="w-10 h-10 bg-rose-50 rounded-full flex items-center justify-center shrink-0 border border-rose-100">
+                <i data-lucide="heart" class="w-5 h-5 text-rose-500 fill-rose-500"></i>
+            </div>
+            <div>
+                <p id="toast-name" class="text-[13px] font-bold text-slate-900 leading-tight">Nome</p>
+                <p class="text-[11px] text-slate-500 mt-0.5">acabou de assinar o <span id="toast-plan" class="font-semibold text-slate-700">Plano</span></p>
+                <p class="text-[10px] text-emerald-500 font-semibold mt-1 flex items-center gap-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Agora mesmo
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        // Marquee
+        const marqueeItems = [
+            "Busca e Apreensão de Veículo", "Fraude Bancária e Pix", "Juros Abusivos",
+            "Revisão de Financiamento", "Rescisão Indireta", "Acidente de Trabalho",
+            "Pensão e Divórcio", "Inventário e Partilha", "Usucapião", "Despejo",
+            "BPC/LOAS", "Auxílio Doença", "Planejamento Previdenciário"
+        ];
+        const marqueeContainer = document.getElementById('marquee-container');
+        if (marqueeContainer) {
+            let marqueeHTML = '<div class="flex gap-4 whitespace-nowrap px-2">';
+            marqueeItems.forEach(item => {
+                marqueeHTML += `<span class="px-5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-medium text-slate-700 shadow-sm hover:border-emerald-500 transition-colors cursor-default">${item}</span>`;
+            });
+            marqueeHTML += '</div>';
+            marqueeContainer.innerHTML = marqueeHTML + marqueeHTML.replace('<div', '<div aria-hidden="true"');
+        }
+
+        // Navegação entre Páginas (Home vs Contratação de Agentes)
+        function showMainPage() {
+            document.getElementById('page-home').classList.remove('hidden');
+            document.getElementById('page-agents').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showAgentPage() {
+            document.getElementById('page-home').classList.add('hidden');
+            document.getElementById('page-agents').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            renderAgentConfigs();
+        }
+
+        // Tabela Progressiva de Agentes Avulsos (proposta comercial)
+        const agentPricesTable = {
+            1: 697,
+            2: 1294,
+            3: 1791,
+            4: 2188,
+            5: 2485,
+            6: 2862,
+            7: 3199,
+            8: 3496,
+            9: 3753,
+            10: 3970
+        };
+
+        let currentAgentCount = 1;
+        const areasDireitoList = [
+            "Direito Previdenciário",
+            "Direito Trabalhista",
+            "Direito Bancário",
+            "Direito do Consumidor",
+            "Direito de Família e Sucessões",
+            "Direito Imobiliário",
+            "Direito Tributário",
+            "Direito Criminal"
+        ];
+
+        const tesesExemplos = {
+            "Direito Previdenciário": ["Salário-Maternidade", "BPC / LOAS", "Auxílio Doença", "Aposentadoria Rural", "Pensão por Morte"],
+            "Direito Trabalhista": ["Rescisão Indireta", "Acidente de Trabalho", "Horas Extras", "Vínculo Empregatício"],
+            "Direito Bancário": ["Fraude Bancária e Pix", "Juros Abusivos", "Revisão de Financiamento"],
+            "Direito do Consumidor": ["Negativação Indevida", "Problema com Voo/Bagagem", "Produto com Defeito"],
+            "Direito de Família e Sucessões": ["Divórcio Consensual/Litigioso", "Pensão Alimentícia", "Inventário e Partilha"],
+            "Direito Imobiliário": ["Despejo", "Atraso na Entrega de Imóvel", "Usucapião"],
+            "Direito Tributário": ["Recuperação de Créditos", "Defesa em Execução Fiscal"],
+            "Direito Criminal": ["Habeas Corpus", "Acompanhamento em Delegacia", "Liberdade Provisória"]
+        };
+
+        function adjustAgentCount(change) {
+            currentAgentCount = Math.max(1, Math.min(10, currentAgentCount + change));
+            document.getElementById('agent-count-display').innerText = currentAgentCount;
+            renderAgentConfigs();
+            updateOrderSummary();
+        }
+
+        function renderAgentConfigs() {
+            const container = document.getElementById('agents-config-container');
+            let html = '';
+            for (let i = 1; i <= currentAgentCount; i++) {
+                html += `
+                    <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm relative">
+                        <div class="absolute top-4 right-4 bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-full">
+                            Agente #${i}
+                        </div>
+                        <h4 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                            <i data-lucide="bot" class="w-4 h-4 text-emerald-600"></i> Configuração do Agente ${i}
+                        </h4>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">Área do Direito</label>
+                                <select id="area-select-${i}" onchange="updateTeseOptions(${i})" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-emerald-500">
+                                    ${areasDireitoList.map(area => `<option value="${area}">${area}</option>`).join('')}
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-600 mb-1.5">Tese do Agente / Tema Específico</label>
+                                <input type="text" id="tese-input-${i}" placeholder="Ex: Salário-Maternidade" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3.5 py-2.5 text-sm text-slate-800 focus:outline-none focus:border-emerald-500" value="Salário-Maternidade" />
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            container.innerHTML = html;
+            lucide.createIcons({ root: container });
+            updateOrderSummary();
+        }
+
+        function updateTeseOptions(agentIndex) {
+            const select = document.getElementById(`area-select-${agentIndex}`);
+            const input = document.getElementById(`tese-input-${agentIndex}`);
+            const selectedArea = select.value;
+            if (tesesExemplos[selectedArea] && tesesExemplos[selectedArea].length > 0) {
+                input.value = tesesExemplos[selectedArea][0];
+            }
+        }
+
+        function updateOrderSummary() {
+            const basePrice = agentPricesTable[currentAgentCount] || (currentAgentCount * 697);
+            const pixPrice = Math.round(basePrice * 0.9); // 10% de desconto PIX
+            const savings = basePrice - pixPrice;
+
+            document.getElementById('total-price-display').innerText = `R$ ${pixPrice.toLocaleString('pt-BR')}`;
+            document.getElementById('original-price-display').innerText = `R$ ${basePrice.toLocaleString('pt-BR')}`;
+            document.getElementById('discount-badge-text').innerHTML = `✨ Inclui 10% de desconto PIX (R$ ${savings.toLocaleString('pt-BR')} de economia)`;
+        }
+
+        const WORKER_URL = "https://lucky-term-85cb.suporteguimoo.workers.dev";
+
+async function checkoutAgentOrder(method) {
+    const basePrice = agentPricesTable[currentAgentCount] || (currentAgentCount * 697);
+    const finalPrice = method === 'pix' ? Math.round(basePrice * 0.9) : basePrice;
+
+    // Muda o texto do botão para indicar carregamento
+    const btn = event.currentTarget;
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Gerando cobrança...';
+    btn.disabled = true;
+
+    const agentsData = [];
+    for (let i = 1; i <= currentAgentCount; i++) {
+        const area = document.getElementById(`area-select-${i}`)?.value;
+        const tese = document.getElementById(`tese-input-${i}`)?.value;
+        agentsData.push({ area, tese });
+    }
+
+    try {
+        const response = await fetch(WORKER_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                quantity: currentAgentCount,
+                price: finalPrice,
+                method: method,
+                agentsData: agentsData
+            })
+        });
+
+        const payment = await response.json();
+
+        if (payment.url) {
+            window.location.href = payment.url; // Redireciona para o link de pagamento novo
+        } else if (payment.invoiceUrl) {
+            window.location.href = payment.invoiceUrl; // Redireciona para a fatura (fallback)
+        } else {
+            alert("Erro ao gerar cobrança. Verifique as configurações da chave no Cloudflare.");
+            console.error(payment);
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        }
+    } catch (err) {
+        alert("Falha na conexão com o sistema de pagamentos.");
+        console.error(err);
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+    }
+}
+        // Simulador de Chat
+        const scripts = {
+            trabalhista: [
+                { sender: 'bot', text: '<p>Olá! Sou a Assistente Jurídica da Guimoo.</p><p class="mt-2">Vou ajudar a entender mais sobre o benefício de <strong>Salário-Maternidade</strong> e verificar se tem direito.</p><p class="mt-2">Para começarmos, qual o seu nome?</p>', time: '10:30', delay: 1500 },
+                { sender: 'user', text: 'Lucas Oliveira', time: '10:31', delay: 1000 },
+                { sender: 'bot', text: '<p>Prazer, Lucas! 👋</p><p class="mt-2">Vou fazer algumas perguntas rápidas para entender o seu caso, tudo bem?</p>', time: '10:31', delay: 2000 },
+                { sender: 'user', text: 'Tudo bem!', time: '10:31', delay: 1000 },
+                { sender: 'bot', text: 'O benefício seria para quem?', time: '10:32', delay: 1500 },
+                { sender: 'user', text: 'Para a minha esposa.', time: '10:32', delay: 1500 },
+                { sender: 'bot', text: 'Possui algum laudo ou atestado médico que comprove a gestação ou condição?', time: '10:32', delay: 2000 },
+                { sender: 'user', text: 'Sim, temos.', time: '10:32', delay: 1000 },
+                { sender: 'bot', text: '<p>Perfeito, Lucas!</p><p class="mt-2">Em tese, sua esposa pode ter direito ao benefício. Vou transferi-lo para um advogado especialista da nossa equipa dar continuidade.</p>', time: '10:35', delay: 3500 }
+            ],
+            previdenciario: [
+                { sender: 'bot', text: '<p>Olá! Sou a Assistente Jurídica da Guimoo.</p><p class="mt-2">Vi que tem interesse no benefício <strong>BPC/LOAS</strong>.</p><p class="mt-2">Para começarmos a análise, qual o seu nome?</p>', time: '14:15', delay: 1500 },
+                { sender: 'user', text: 'Maria Silva', time: '14:16', delay: 1000 },
+                { sender: 'bot', text: '<p>Prazer, Maria!</p><p class="mt-2">O BPC/LOAS é pago a idosos acima de 65 anos ou pessoas com deficiência. O benefício seria para quem?</p>', time: '14:16', delay: 2500 },
+                { sender: 'user', text: 'Para o meu filho.', time: '14:17', delay: 1500 },
+                { sender: 'bot', text: '<p>Entendi. Ele possui algum laudo médico atualizado?</p>', time: '14:17', delay: 2000 },
+                { sender: 'user', text: 'Sim, laudo de autismo.', time: '14:18', delay: 1500 },
+                { sender: 'bot', text: '<p>Perfeito, Maria. O caso possui alta viabilidade. Vou encaminhar o seu atendimento para o especialista responsável.</p>', time: '14:20', delay: 3500 }
+            ]
+        };
+
+        let currentArea = 'trabalhista';
+        let isSimulating = false;
+        const delay = ms => new Promise(res => setTimeout(res, ms));
+
+        function selectArea(area) {
+            if (isSimulating) return;
+            currentArea = area;
+            document.getElementById('messages-wrapper').innerHTML = '';
+            document.getElementById('msg-lock').style.display = 'flex';
+            document.getElementById('cta-final').classList.add('hidden');
+
+            const btnTrab = document.getElementById('btn-area-trabalhista');
+            const checkTrab = document.getElementById('check-trabalhista');
+            const causasTrab = document.getElementById('causas-trabalhista');
+            const btnPrev = document.getElementById('btn-area-previdenciario');
+            const checkPrev = document.getElementById('check-previdenciario');
+            const causasPrev = document.getElementById('causas-previdenciario');
+
+            if (area === 'trabalhista') {
+                btnTrab.className = 'flex items-start p-4 rounded-xl relative cursor-pointer transition-all group border-2 border-emerald-500 bg-emerald-500/10 shadow-sm';
+                checkTrab.classList.remove('hidden');
+                causasTrab.classList.remove('hidden');
+                btnPrev.className = 'flex items-start p-4 rounded-xl relative cursor-pointer transition-all group border border-slate-600 bg-slate-800/80';
+                checkPrev.classList.add('hidden');
+                causasPrev.classList.add('hidden');
+            } else {
+                btnPrev.className = 'flex items-start p-4 rounded-xl relative cursor-pointer transition-all group border-2 border-emerald-500 bg-emerald-500/10 shadow-sm';
+                checkPrev.classList.remove('hidden');
+                causasPrev.classList.remove('hidden');
+                btnTrab.className = 'flex items-start p-4 rounded-xl relative cursor-pointer transition-all group border border-slate-600 bg-slate-800/80';
+                checkTrab.classList.add('hidden');
+                causasTrab.classList.add('hidden');
+            }
+        }
+
+        async function startSimulation() {
+            if (isSimulating) return;
+            isSimulating = true;
+            const btnStart = document.getElementById('btn-start');
+            const btnStartContent = document.getElementById('btn-start-content');
+            const msgWrapper = document.getElementById('messages-wrapper');
+            const typingIndicator = document.getElementById('typing-indicator');
+            const chatContainer = document.getElementById('chat-container');
+            const msgLock = document.getElementById('msg-lock');
+            const ctaFinal = document.getElementById('cta-final');
+
+            msgWrapper.innerHTML = '';
+            msgLock.style.display = 'none';
+            ctaFinal.classList.add('hidden');
+            
+            btnStart.className = 'w-full py-4 px-4 rounded-xl flex items-center justify-center font-bold text-white bg-slate-500 cursor-not-allowed';
+            btnStartContent.innerHTML = `<i data-lucide="loader-2" class="w-5 h-5 mr-2 animate-spin"></i><span>A simular...</span>`;
+            lucide.createIcons({ root: btnStartContent });
+
+            const script = scripts[currentArea];
+            for (let i = 0; i < script.length; i++) {
+                const msg = script[i];
+                if (msg.sender === 'bot') {
+                    typingIndicator.classList.remove('hidden');
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                    await delay(msg.delay);
+                    typingIndicator.classList.add('hidden');
+                } else {
+                    await delay(msg.delay);
+                }
+
+                const isUser = msg.sender === 'user';
+                const msgHTML = `
+                    <div class="flex ${isUser ? 'justify-end' : 'justify-start'} w-full opacity-0 translate-y-2 transition-all duration-300 ease-out" id="msg-${i}">
+                        <div class="max-w-[85%] rounded-2xl px-3 py-2 shadow-sm relative ${isUser ? 'bg-[#DCF8C6] text-slate-800 rounded-tr-none' : 'bg-white text-slate-800 rounded-tl-none'}">
+                            <div class="text-[13px] leading-relaxed break-words">${msg.text}</div>
+                            <div class="text-[10px] text-slate-400 text-right mt-1 flex items-center justify-end gap-1">
+                                ${msg.time} ${isUser ? '<i data-lucide="check-check" class="w-3 h-3 text-blue-500"></i>' : ''}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                msgWrapper.insertAdjacentHTML('beforeend', msgHTML);
+                lucide.createIcons({ root: document.getElementById(`msg-${i}`) });
+                setTimeout(() => {
+                    const el = document.getElementById(`msg-${i}`);
+                    if(el) el.classList.remove('opacity-0', 'translate-y-2');
+                }, 50);
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }
+            
+            isSimulating = false;
+            btnStart.className = 'w-full py-4 px-4 rounded-xl flex items-center justify-center font-bold text-white bg-emerald-500 hover:bg-emerald-400 hover:-translate-y-1 transition-all';
+            btnStartContent.innerHTML = `<i data-lucide="play" class="w-5 h-5 mr-2 fill-white"></i><span>Iniciar Simulação</span>`;
+            lucide.createIcons({ root: btnStartContent });
+            ctaFinal.classList.remove('hidden');
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        // Prova social toast
+        const nomesEscritorios = ["Escritório SP", "Escritório MG", "Escritório RJ", "Escritório PR", "Escritório RS", "Escritório GO"];
+        const planosComprados = ["Contratação de Agente Avulso", "Plano GROWTH", "Plano SCALE", "Plano PRO", "Plano START"];
+        const toastEl = document.getElementById('toast-notification');
+        
+        function showToast() {
+            document.getElementById('toast-name').innerText = nomesEscritorios[Math.floor(Math.random() * nomesEscritorios.length)];
+            document.getElementById('toast-plan').innerText = planosComprados[Math.floor(Math.random() * planosComprados.length)];
+            toastEl.classList.remove('toast-hidden');
+            toastEl.classList.add('toast-visible');
+            setTimeout(() => {
+                toastEl.classList.remove('toast-visible');
+                toastEl.classList.add('toast-hidden');
+                setTimeout(showToast, Math.random() * 6000 + 12000);
+            }, 5000);
+        }
+        setTimeout(showToast, 4000);
+    </script>
+</body>
+</html>
